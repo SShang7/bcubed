@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Layout,Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Typography } from 'antd';
+const { Title } = Typography;
+
+
+const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p> My token = {window.token}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout>
+      <Header style={{padding:10}}>
+        <Avatar style={{float:"right"}} size="large" icon={<UserOutlined />} />
+        <Title style={{color:'white'}} level={3}>bullish.bearish.beyond</Title>
+      </Header>
+      
+        <Layout>
+        <Sider style={{background:'green'}}>menu(coming)</Sider>
+        <Layout>
+          <Content>
+            <p> My token = {window.token}</p>
+            </Content>
+          <Footer>footer</Footer>
+        </Layout>
+      </Layout>
+    </Layout>
     </div>
   );
 }
