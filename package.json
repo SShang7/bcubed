@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "antd": "^4.15.5"
+    "antd": "^4.15.5",
+    "react-icons": "^4.2.0"
   }
 }
