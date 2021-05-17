@@ -16,7 +16,9 @@ function HeroSection() {
                 buttonStyle='btn--outline'
                 buttonSize='btn--large'
                 >
+                <Link to='/login' className='homelink'>
                     sign in
+                </Link>
                 </Button>
                 <Button
                 className='btns'

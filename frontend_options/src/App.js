@@ -7,6 +7,8 @@ import Home from './components/pages/Home'
 import Trends from './components/pages/Trends';
 import OPC from './components/pages/OPC';
 import AboutUs from './components/pages/AboutUs';
+import Login from './components/pages/Login';
+import SignUp from './components/pages/SignUp';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path='/trends' component={Trends} />
           <Route path='/opc' component={OPC} />
           <Route path='/aboutus' component={AboutUs} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={SignUp} />
         </Switch>
       </Router>
     </>
