@@ -18,7 +18,7 @@ INTERVAL = datetime.timedelta(100)
 RAW_START_DATE = RAW_END_DATE-INTERVAL
 END_DATE = str(RAW_END_DATE.strftime("%Y-%m-%d"))
 START_DATE = str(RAW_START_DATE.strftime("%Y-%m-%d"))
-STOCK = 'asdfasdfw'
+STOCK = 'GOOGL'
 def filter_data(stock_data, col):
     weekdays = pd.date_range(start=START_DATE, end=END_DATE)
     clean_data = stock_data[col].reindex(weekdays)
