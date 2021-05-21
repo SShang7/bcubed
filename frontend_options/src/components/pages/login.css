@@ -1,0 +1,26 @@
+.Login {
+    padding: 60px 0;
+  }
+    
+  .UserName {
+      margin-left: -20px;
+  }
+  
+  .PW {
+      margin-top: 10px;
+      margin-left: 5px;
+  }
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+  
+  .loginbutton {
+      margin-top: 20px;
+      margin-left: 50px;
+  }
+  
+  .registerbutton {
+      margin-top: 20px;
+      margin-left: 40px;
+  }
