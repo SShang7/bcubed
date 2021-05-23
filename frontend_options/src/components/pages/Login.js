@@ -64,11 +64,11 @@ export default function Login() {
         </Button>
     </div>
     <div className="registerbutton">
+    <Link to='/signup'>
     <Button >
-        <Link to='/signup'>
             Register        
-        </Link>          
     </Button>
+    </Link>         
     </div>
       </Form>
     </div>

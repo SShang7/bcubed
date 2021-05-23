@@ -3,13 +3,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./SignUp.css";
 
-export default function Login() {
+export default function SignUp() {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
 
   function validateForm() {
-    return username.length > 0 && password.length > 0 && email.length > 0;
+    return email.length && username.length > 0 && password.length > 0;
   }
 
   function handleSubmit(event) {
@@ -34,7 +34,6 @@ export default function Login() {
             <Form.Group size="lg" controlId="username">
             <Form.Label>Username</Form.Label>
             <Form.Control
-                autoFocus
                 type="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)} //e.target.value holds username
@@ -60,4 +59,6 @@ export default function Login() {
     </div>
   );
 }
+
+
 
