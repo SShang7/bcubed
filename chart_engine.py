@@ -34,10 +34,16 @@ def create_plot(stock_data, ticker):
     
 def get_data(ticker):
     try:
-        stock_data = data.DataReader(ticker, 'yahoo', START_DATE, END_DATE)
-        stock_data = filter_data(stock_data, 'Adj Close')
-        print(stock_data)
-        create_plot(stock_data, 'GOOGL')
+        stock_data = data.get_data_yahoo("GOOGL", START_DATE, END_DATE)['Adj Close']
+        #print(stock_data)
+        #create_plot(stock_data, 'GOOGL')
+        exp1 = stock_data.ewm(span=12, adjust=False).mean()
+        exp2 = stock_data.ewm(span=26, adjust=False).mean()
+        macd = exp1 - exp2
+        exp3 = macd.ewm(span=9, adjust=False).mean()
+        macd.plot(label='GOOGL MACD', color='g')
+        ax = exp3.plot(label='Signal Line', color='r')
+        stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 get_data(STOCK)
