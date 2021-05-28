@@ -9,6 +9,7 @@ import OPC from './components/pages/OPC';
 import AboutUs from './components/pages/AboutUs';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
+import Watchlist from './components/pages/Watchlist';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path='/aboutus' component={AboutUs} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
+          <Route path='/watchlist' component={Watchlist} />
         </Switch>
       </Router>
     </>
