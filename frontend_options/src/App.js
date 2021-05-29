@@ -11,7 +11,8 @@ import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Watchlist from './components/pages/Watchlist';
 import React from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 export default function App() {
   const firebaseApp = firebase.apps[0];
@@ -25,6 +26,63 @@ export default function App() {
     </div>
   );
 }
+export const App = () => {
+  const [uuser, setUser] = React.useState(null);
+
+   retun user ? (
+     <AuthenticatedApp user={user} />
+   ) : (
+     <SignupForm onSuccess={setUser} />
+  );
+};
+
+export const SignupForm = ({onSuccess}) => {
+  const [email, setEmail] = React.useState("");
+  const [pasword, setPasswoed] = React.useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const user = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password);
+    onSuccess(user);
+    return;
+  };
+  return(
+    <form onSubmit={handleSubmit}>
+      <div className="flex flex-column">
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        ></input>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="passwoord"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        ></input>
+         
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+  );
+};
+
+ export const AuthenticatedApp = ({ user }) => {
+   return (
+     <div>
+       <h1>You're logged In.</h1>
+       <code>
+         <pre>{JSON.stringify(user, null, 2)}</pre>
+       </code>
+     </div>
+   );
+ };
+
 
 function App() {
   return (
