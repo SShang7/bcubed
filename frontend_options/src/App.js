@@ -9,6 +9,7 @@ import OPC from './components/pages/OPC';
 import AboutUs from './components/pages/AboutUs';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
+<<<<<<< HEAD
 import Watchlist from './components/pages/Watchlist';
 import React from "react";
 import firebase from "firebase/app";
@@ -83,6 +84,8 @@ export const SignupForm = ({onSuccess}) => {
    );
  };
 
+=======
+>>>>>>> parent of 251f546 (added watchlist tab)
 
 function App() {
   return (
@@ -96,7 +99,6 @@ function App() {
           <Route path='/aboutus' component={AboutUs} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/watchlist' component={Watchlist} />
         </Switch>
       </Router>
     </>

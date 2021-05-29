@@ -1,5 +1,6 @@
 {
   "files": {
+<<<<<<< HEAD
     "main.css": "/static/react/static/css/main.b5f1e250.chunk.css",
     "main.js": "/static/react/js/main.74b20512.chunk.js",
     "main.js.map": "/static/react/js/main.74b20512.chunk.js.map",
@@ -18,5 +19,25 @@
     "js/2.b35f197e.chunk.js",
     "static/css/main.b5f1e250.chunk.css",
     "js/main.74b20512.chunk.js"
+=======
+    "main.css": "/static/react/static/css/main.297e1b46.chunk.css",
+    "main.js": "/static/react/js/main.281b2ca7.chunk.js",
+    "main.js.map": "/static/react/js/main.281b2ca7.chunk.js.map",
+    "runtime-main.js": "/static/react/js/runtime-main.cc27c622.js",
+    "runtime-main.js.map": "/static/react/js/runtime-main.cc27c622.js.map",
+    "js/2.ec72c6b4.chunk.js": "/static/react/js/2.ec72c6b4.chunk.js",
+    "js/2.ec72c6b4.chunk.js.map": "/static/react/js/2.ec72c6b4.chunk.js.map",
+    "js/3.dfe74fa9.chunk.js": "/static/react/js/3.dfe74fa9.chunk.js",
+    "js/3.dfe74fa9.chunk.js.map": "/static/react/js/3.dfe74fa9.chunk.js.map",
+    "../../templates/index.html": "/static/react/../../templates/index.html",
+    "js/2.ec72c6b4.chunk.js.LICENSE.txt": "/static/react/js/2.ec72c6b4.chunk.js.LICENSE.txt",
+    "static/css/main.297e1b46.chunk.css.map": "/static/react/static/css/main.297e1b46.chunk.css.map"
+  },
+  "entrypoints": [
+    "js/runtime-main.cc27c622.js",
+    "js/2.ec72c6b4.chunk.js",
+    "static/css/main.297e1b46.chunk.css",
+    "js/main.281b2ca7.chunk.js"
+>>>>>>> parent of 251f546 (added watchlist tab)
   ]
 }
