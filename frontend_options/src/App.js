@@ -27,9 +27,9 @@ export default function App() {
   );
 }
 export const App = () => {
-  const [uuser, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(null);
 
-   retun user ? (
+   return user ? (
      <AuthenticatedApp user={user} />
    ) : (
      <SignupForm onSuccess={setUser} />
