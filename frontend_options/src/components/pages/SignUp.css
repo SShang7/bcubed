@@ -1,29 +1,26 @@
-.Login {
-    padding: 60px 0;
-  }
-
-  .Email {
-    margin-top: 10px;
-    margin-left: 30px;
-  }
-    
-  .UserName {
-    margin-top: 30px;
-    margin-left: -30px;
-  }
-
-  .PW {
-    margin-top: 30px;
-    margin-left: -25px;
-  }
 
 
-  .Login form {
-    margin: 0 auto;
-    max-width: 320px;
-  }
-  
-  .loginbutton {
-      margin-top: 20px;
-      margin-left: 40px;
-  }
+.card1 {
+  text-align: center;
+}
+
+.headertext {
+  color: #fff;
+}
+
+.button1 {
+  margin-top: 5px;
+}
+
+.linktext {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.loglink {
+  color: blue;
+}
+
+.error {
+  color: white;
+}

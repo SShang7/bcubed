@@ -1,27 +1,31 @@
-.Login {
-    padding: 60px 0;
-  }
-    
-  .UserName {
-      margin-top: 30px;
-      margin-left: -20px;
+.card1 {
+    text-align: center;
   }
   
-  .PW {
-      margin-top: 10px;
-      margin-left: 5px;
-  }
-  .Login form {
-    margin: 0 auto;
-    max-width: 320px;
+  .headtext {
+    color: white;
   }
   
-  .loginbutton {
-      margin-top: 20px;
-      margin-left: 50px;
+  .logbutton {
+    margin-top: 5px;
   }
   
-  .registerbutton {
-      margin-top: 20px;
-      margin-left: 40px;
+  .forgotLink {
+    margin-top: 10px;
+  }
+  
+  .forgot {
+    color: blue;
+  }
+  
+  .needacct {
+    text-align: center;
+  }
+  
+  .signlink {
+    color:blue;
+  }
+  
+  .alert {
+    color: white;
   }
