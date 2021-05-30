@@ -12,12 +12,12 @@ function HeroSection() {
             <p>ready to make some money?</p>
             <div className="hero-btns">
             <Link to='/login' className='homelink'>
-                <Button block size="lg">
+                <Button block size="lg" className="btn">
                     sign in
                 </Button>
                 </Link>
-                <Link to='/trends' className='homelink'>
-                <Button block size="lg">
+                <Link to='/home' className='homelink'>
+                <Button block size="lg" color="#3500d3">
                     enter
                 </Button>
                 </Link>
