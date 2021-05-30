@@ -4,6 +4,7 @@ import './navbar.css';
 import { Button } from './Button';
 import { AiOutlineStock } from "react-icons/ai"
 
+
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
@@ -38,7 +39,7 @@ function Navbar() {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className="nav-item">
-                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
                                 home
                             </Link>
                         </li>
@@ -53,13 +54,18 @@ function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item">
+                            <Link to='/Watchlist' className='nav-links' onClick={closeMobileMenu}>
+                                watchlist
+                            </Link>
+                        </li>
+                        <li className="nav-item">
                             <Link to='/aboutus' className='nav-links' onClick={closeMobileMenu}>
                                 about us
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to='/login' className='nav-links-mobile' onClick={closeMobileMenu}>
-                                sign up
+                                Login
                             </Link>
                         </li>
                     </ul>

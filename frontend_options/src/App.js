@@ -9,6 +9,7 @@ import OPC from './components/pages/OPC';
 import AboutUs from './components/pages/AboutUs';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
+import HomeHS from './components/pages/HomeHS'
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path='/' exact component={Home}/>
+          <Route path='/' exact component={HomeHS}/>
+          <Route path='/home' exact component={Home}/>
           <Route path='/trends' component={Trends} />
           <Route path='/opc' component={OPC} />
           <Route path='/aboutus' component={AboutUs} />
