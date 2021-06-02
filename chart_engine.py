@@ -13,11 +13,9 @@ import numpy as np
 import datetime
 
 
-RAW_END_DATE = datetime.datetime.now()
+END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(100)
-RAW_START_DATE = RAW_END_DATE-INTERVAL
-END_DATE = str(RAW_END_DATE.strftime("%Y-%m-%d"))
-START_DATE = str(RAW_START_DATE.strftime("%Y-%m-%d"))
+START_DATE = END_DATE-INTERVAL
 STOCK = 'GOOGL'
 def filter_data(stock_data, col):
     weekdays = pd.date_range(start=START_DATE, end=END_DATE)
@@ -40,9 +38,22 @@ def get_data(ticker):
         exp1 = stock_data.ewm(span=12, adjust=False).mean()
         exp2 = stock_data.ewm(span=26, adjust=False).mean()
         macd = exp1 - exp2
-        exp3 = macd.ewm(span=9, adjust=False).mean()
+        signal = macd.ewm(span=9, adjust=False).mean()
+        top_bot_cross = []
+        bot_top_cross = []
+        last_date = macd.index[0]
+        for date, value in macd.items():
+            if date == START_DATE:
+                continue
+            if (macd[last_date] > signal[last_date]) and (signal[date] > macd[date]):
+                top_bot_cross.append(date)
+            elif (macd[last_date] < signal[last_date]) and (signal[date] < macd[date]):
+                bot_top_cross.append(date)
+            last_date = date
+        print(top_bot_cross)
+        print(bot_top_cross)
         macd.plot(label='GOOGL MACD', color='g')
-        ax = exp3.plot(label='Signal Line', color='r')
+        ax = signal.plot(label='Signal Line', color='r')
         stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
