@@ -44,30 +44,47 @@ export default function Trends() {
         console.log("Something went wrong.", error);
       });
   };
-  
+
+  function clicked2() {
+    setTicker("");
+    setButton(false);
+    setSuccess(true);
+    setLoading(true);
+    setData(null);
+  };
+
   return (
     button ?
       (loading ? (<div className="loading">
-        <h1>Loading...</h1>
+        <h1 style={{ color: 'white' }}>Loading...</h1>
+        <Button block onClick={() => clicked2()} size="sm" type="submit">
+          Back
+          </Button>
       </div>) :
         (success ?
           (<div>
             <div className="trendinfo">
-              <h1>Trends for {ticker}:</h1>
+              <h1 style={{ color: 'white' }}>Trends for {ticker}:</h1>
             </div>
             <div className="image">
-              <img src="" alt="test"/>
+              <img src="" alt="test" />
             </div>
+            <Button block onClick={() => clicked2()} size="sm" type="submit">
+              Back
+          </Button>
           </div>) :
           (<div className="failure">
-            <h1>Could not fetch data on trends for {ticker}:</h1>
+            <h1 style={{ color: 'white' }}>Could not fetch data on trends for {ticker}:</h1>
+            <Button block onClick={() => clicked2()} size="sm" type="submit">
+              Back
+          </Button>
           </div>)))
       :
       (<div className="TrendSubmit" align="center">
         <Form onSubmit={handleSubmit}>
           <div className="trendintro">
-            <h1>This is the trends page!</h1>
-            <h2>Select a ticker:</h2>
+            <h1 style={{ color: 'white' }}>This is the trends page!</h1>
+            <h2 style={{ color: 'white' }}>Select a ticker:</h2>
           </div>
           <div className="Ticker">
             <Form.Group size="lg" controlId="ticker">
