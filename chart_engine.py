@@ -50,8 +50,18 @@ def get_data(ticker):
             elif (macd[last_date] < signal[last_date]) and (signal[date] < macd[date]):
                 bot_top_cross.append(date)
             last_date = date
-        print(top_bot_cross)
-        print(bot_top_cross)
+        last_date = top_bot_cross[0]
+        bull = []
+        bear = []
+        for date in top_bot_cross:
+            if date == top_bot_cross[0]:
+                continue
+            if (stock_data[last_date] < stock_data[date]) and (macd[last_date]>macd[date]):
+                bear.append(date)
+            elif (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
+                bull.append(date)
+        print(bull)
+        print(bear)
         macd.plot(label='GOOGL MACD', color='g')
         ax = signal.plot(label='Signal Line', color='r')
         stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
