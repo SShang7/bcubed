@@ -22,6 +22,10 @@ function HeroSection() {
                 </Button>
                 </Link>
             </div>
+            <div>
+            <img src="/static/bearfinal-removebg-preview.png" alt="bear" id="bearimage1"></img>
+            <img src="/static/bull1-removebg-preview.png" alt="bull" id="bullimage1"></img>                
+            </div>
         </div>
     )
 }

@@ -12,7 +12,8 @@ import Watchlist from './components/pages/Watchlist';
 import Dashboard from './components/pages/Dashboard';
 import ForgotPassword from './components/pages/ForgotPassword';
 import UpdateProfile from './components/pages/UpdateProfile';
-import PrivateRoute from './components/pages/PrivateRoute'
+import PrivateRoute from './components/pages/PrivateRoute';
+import ToWatch from './components/pages/ToWatch';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/signup' component={SignUp} />
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path='/watchlist' component={Watchlist} />
+          <Route path='/towatch' component={ToWatch} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute path="/update-profile" component={UpdateProfile} />
         </Switch>
