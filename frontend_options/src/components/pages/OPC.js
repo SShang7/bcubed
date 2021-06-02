@@ -27,7 +27,7 @@ class Form extends React.Component {
 		var total;
 		
 		if (contracts !== "" && ppo !== "") {
-			total = parseInt(contracts) * parseInt(ppo) * 100;
+			total = parseInt(contracts) * parseFloat(ppo) * 100;
 		} else {
 			total = 0;
 		}
@@ -80,95 +80,99 @@ class Form extends React.Component {
 	//<!onSubmit={this.handleSubmit}>
 	render() {
 		return (
-			<form>
+	<form style={{color: '#fffdd0'}}>
 				<div>
-					<label className="label">
-						<h3 className="h3">
+					<div style={{paddingUp: '20px'}}>
+						<h3>
 							What kind of calculator did you want?
 						</h3>
 						
 						<br/>
 						
-						<input type="radio" id="long call" name="Call or Put" value="long call" checked={this.state.callOrPut === "long call"} onChange={this.handleCallOrPutChange} />
-						<label for="long call"> Long Call </label>
-						
-						<input type="radio" id="long put" name="Call or Put" value="long put" checked={this.state.callOrPut === "long put"} onChange={this.handleCallOrPutChange} />
-						<label for="long put"> Long Put </label>
-					</label>
+						<span>
+							<input type="radio" id="long call" name="Call or Put" value="long call" checked={this.state.callOrPut === "long call"} onChange={this.handleCallOrPutChange} />
+							<label for="long call" style={{paddingRight: '20px'}}> Long Call </label>
+							
+							<input type="radio" id="long put" name="Call or Put" value="long put" checked={this.state.callOrPut === "long put"} onChange={this.handleCallOrPutChange} />
+							<label for="long put"> Long Put </label>
+						</span>
+					</div>
 				</div>
 				
 				<br/>
 			
 				<div>
 					<div>
-						<h3 className="h3"> Stock Symbol </h3>
+						<h3> Stock Symbol </h3>
 					</div>
 					
 					<br/>
 					
-					<span>
-						<label className="label">
-							Symbol:
-							<input type="text" name="Symbol" onChange={this.handleSymbolChange}/>
-						</label>
-						<input type="button" value="Look Up" onClick={this.handleLookUp}/> 
-					</span>
+					<div style={{paddingUp: '20px'}}>
+						Symbol:
+						<span style={{paddingLeft: '20px'}}>
+							<input type="text" name="Symbol" onChange={this.handleSymbolChange} style={{paddingRight: '20px'}} />
+							<input type="button" value="Look Up" onClick={this.handleLookUp} /> 
+						</span>
+					</div>
 					
 					<br/>
 					
-					<label className="label">
+					<div style={{paddingUp: '20px'}}>
 						Stock Price:
-						<span>
+						<span style={{paddingLeft: '20px'}}>
 							$
 							<input type="text" name="Price" value={this.state.stockPrice} onChange={this.handleStockPriceChange}/>
 						</span>
-					</label>
+					</div>
 				</div>
 				
 				<br/>
 				
 				<div>
 					<div>
-						<h3 className="h3"> Option </h3> 
+						<h3> Option </h3>
 					</div>
 					
 					<br/>
 					
-					<label className="label">
+					<div style={{paddingUp: '20px'}}>
 						Buy or write:
-						<input type="radio" id="buy" name="Buy or Write" value="buy" checked={this.state.buyOrWrite === "buy"} onChange={this.handleBuyOrWriteChange} />
-						<label for="buy"> Buy </label>
+						<span style={{paddingLeft: '20px'}}>
+							<input type="radio" id="buy" name="Buy or Write" value="buy" checked={this.state.buyOrWrite === "buy"} onChange={this.handleBuyOrWriteChange} />
+							<label for="buy" style={{paddingRight: '20px'}}> Buy </label>
 						
-						<input type="radio" id="write" name="Buy or Write" value="write" checked={this.state.buyOrWrite === "write"} onChange={this.handleBuyOrWriteChange} />
-						<label for="write"> Write </label>
-					</label> 
+							<input type="radio" id="write" name="Buy or Write" value="write" checked={this.state.buyOrWrite === "write"} onChange={this.handleBuyOrWriteChange} />
+							<label for="write"> Write </label>
+						</span>
+					</div> 
 					
 					<br/>
 					
-					<label className="label">
+					<div style={{paddingUp: '20px'}}>
 						Price per Option:
-						<span>
+						<span style={{paddingLeft: '20px'}}>
 							$
 							<input type="text" name="PPO" id="PPO" onChange={this.handlePPOChange} />
 						</span>
-					</label>
+					</div>
 					
 					<br/>
 					
-					<label className="label">
+					<div style={{paddingUp: '20px'}}>
 						Contracts:
-						<span>
-							<input type="text" name="Contracts" id="Contracts" onChange={this.handleContractChange} />
+						<span style={{paddingLeft: '20px'}}>
+							<input type="text" name="Contracts" id="Contracts" onChange={this.handleContractChange} style={{paddingRight: '20px'}} />
 							x 100
 						</span>
-					</label>
+					</div>
 					
 					<br/>
 					
-					<label className="label">
+					<div style={{paddingUp: '20px'}}>
 						Total Cost:
 						<div id="total" value={this.state.totalCost}>{this.state.totalCost}</div>
-					</label>
+					</div>
 				</div>
 				
 				<input type="submit" value="Calculate" onClick={this.handleSubmit} />
