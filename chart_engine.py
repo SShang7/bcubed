@@ -14,9 +14,9 @@ import datetime
 
 
 END_DATE = datetime.datetime.now()
-INTERVAL = datetime.timedelta(100)
+INTERVAL = datetime.timedelta(50)
 START_DATE = END_DATE-INTERVAL
-STOCK = 'GOOGL'
+STOCK = ['UAL', 'AAL', 'DAL']
 def filter_data(stock_data, col):
     weekdays = pd.date_range(start=START_DATE, end=END_DATE)
     clean_data = stock_data[col].reindex(weekdays)
@@ -32,7 +32,7 @@ def create_plot(stock_data, ticker):
     
 def get_data(ticker):
     try:
-        stock_data = data.get_data_yahoo("GOOGL", START_DATE, END_DATE)['Adj Close']
+        stock_data = data.get_data_yahoo(ticker, START_DATE, END_DATE)['Adj Close']
         #print(stock_data)
         #create_plot(stock_data, 'GOOGL')
         exp1 = stock_data.ewm(span=12, adjust=False).mean()
@@ -42,6 +42,7 @@ def get_data(ticker):
         top_bot_cross = []
         bot_top_cross = []
         last_date = macd.index[0]
+        # looking for crossovers
         for date, value in macd.items():
             if date == START_DATE:
                 continue
@@ -58,13 +59,18 @@ def get_data(ticker):
                 continue
             if (stock_data[last_date] < stock_data[date]) and (macd[last_date]>macd[date]):
                 bear.append(date)
-            elif (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
+        last_date = bot_top_cross[0]
+        for date in bot_top_cross:
+            if date == bot_top_cross[0]:
+                continue
+            if (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
                 bull.append(date)
-        print(bull)
-        print(bear)
-        macd.plot(label='GOOGL MACD', color='g')
+        print('bull: ', bull)
+        print('bear: ',bear)
+        macd.plot(label='MACD', color='g')
         ax = signal.plot(label='Signal Line', color='r')
         stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
-get_data(STOCK)
+for stock in STOCK:
+    get_data(stock)
