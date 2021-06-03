@@ -10,7 +10,8 @@ the exported JS (flask-backend/static/react).
 
 enter the frontend_options directory and install the necessary dependencies,
 we also find that running npm install beforehand resolves many potential issues
-(mac users use pip3 or python3 instead of python or pip where seen)
+(mac and linux users use pip3 or python3 instead of python or pip where seen)
+(if any of the pip installs do not run for permission reasons, add --user. For example, "pip install --user pandas_datareader")
 
  $ cd frontend_options
  $ npm install
