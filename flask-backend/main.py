@@ -1,5 +1,7 @@
 import flask
-
+from . import chart_engine
+from flask import Flask, jsonify, request
+from firebase_admin import db
 app = flask.Flask("__main__")
 
 @app.route("/")
@@ -15,7 +17,15 @@ app = flask.Flask("__main__")
 @app.route("/trends")
 @app.route("/updateprofile")
 @app.route("/watchlist")
+#@app.route("/tickers")
 def my_index():
     return flask.render_template("index.html", token="Hello FlaskReact")
-
+@app.route ("/images")
+def grab_data():
+    login_json = request.get_json()
+    if not login_json:
+        return jsonify({'msg': 'Missing JSON'}), 400
+    ticker = login_json.get("ticker")
+    chart_engine.get_data(ticker)
+    
 app.run(debug = True)

@@ -29,7 +29,7 @@ storage = firebase.storage()
 END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(100)
 START_DATE = END_DATE-INTERVAL
-STOCK = 'GOOGL'
+#STOCK = 'GOOGL'
 
     
 def get_data(ticker):
@@ -85,4 +85,4 @@ def get_data(ticker):
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 
-get_data(STOCK)
+#get_data(STOCK)
