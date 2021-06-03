@@ -17,14 +17,13 @@ app = flask.Flask("__main__")
 @app.route("/trends")
 @app.route("/updateprofile")
 @app.route("/watchlist")
-#@app.route("/tickers")
+@app.route("/tickers")
 def my_index():
     return flask.render_template("index.html", token="Hello FlaskReact")
-@app.route ("/images")
+
+@app.route("/images")
 def grab_data():
-    login_json = request.get_json()
-    if not login_json:
-        return jsonify({'msg': 'Missing JSON'}), 400
+    login_json = request.json.get()
     ticker = login_json.get("ticker")
     get_data(ticker)
     
