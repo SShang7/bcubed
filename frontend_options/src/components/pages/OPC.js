@@ -1,5 +1,4 @@
 import React from 'react';
-import './OPC.css';
 
 class Form extends React.Component {
 	constructor(props) {
@@ -79,22 +78,66 @@ class Form extends React.Component {
 	}
 	//<!onSubmit={this.handleSubmit}>
 	render() {
+		const highlightColor = '#3500d3'; //#3500d3
+		const textColor = 'whitesmoke'; //#fffdd0
+		
+		const divStyle = {
+			paddingUp: '20px'
+		};
+		
+		const spanStyle = {
+			paddingLeft: '20px'
+		};
+		
+		const h2Style = {
+			color: highlightColor
+		};
+		
+		const radioButtonStyle = {
+			transform: 'scale(2)',
+			marginRight: '10px',
+			marginLeft: '8px'
+		};
+		
+		const radioStyle = {
+			paddingRight: '20px'
+		};
+	
+		const textboxStyle = {
+			backgroundColor: textColor,
+			color: highlightColor,
+			height: '25px',
+			fontSize: '25px',
+			marginRight: '10px'
+		};
+		
+		const button = {
+			marginTop: '20px',
+			height: '30px',
+			width: '150px',
+			fontSize: '25px',
+			backgroundColor: textColor,
+			color: highlightColor,
+			textAlign: 'center',
+			lineHeight: '25px'
+		};
+	
 		return (
-	<form style={{color: '#fffdd0'}}>
+			<form style={{color: textColor, fontSize: '25px'}}>
 				<div>
-					<div style={{paddingUp: '20px'}}>
-						<h3>
+					<div style={divStyle}>
+						<h2 style={h2Style}>
 							What kind of calculator did you want?
-						</h3>
+						</h2>
 						
 						<br/>
 						
 						<span>
-							<input type="radio" id="long call" name="Call or Put" value="long call" checked={this.state.callOrPut === "long call"} onChange={this.handleCallOrPutChange} />
-							<label for="long call" style={{paddingRight: '20px'}}> Long Call </label>
+							<input type="radio" id="long call" name="Call or Put" value="long call" checked={this.state.callOrPut === "long call"} onChange={this.handleCallOrPutChange} style={radioButtonStyle} />
+							<label for="long call" style={radioStyle}> Long Call </label>
 							
-							<input type="radio" id="long put" name="Call or Put" value="long put" checked={this.state.callOrPut === "long put"} onChange={this.handleCallOrPutChange} />
-							<label for="long put"> Long Put </label>
+							<input type="radio" id="long put" name="Call or Put" value="long put" checked={this.state.callOrPut === "long put"} onChange={this.handleCallOrPutChange} style={radioButtonStyle} />
+							<label for="long put" style={radioStyle}> Long Put </label>
 						</span>
 					</div>
 				</div>
@@ -103,26 +146,30 @@ class Form extends React.Component {
 			
 				<div>
 					<div>
-						<h3> Stock Symbol </h3>
+						<h2 style={h2Style}> Stock Symbol </h2>
 					</div>
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
-						Symbol:
-						<span style={{paddingLeft: '20px'}}>
-							<input type="text" name="Symbol" onChange={this.handleSymbolChange} style={{paddingRight: '20px'}} />
-							<input type="button" value="Look Up" onClick={this.handleLookUp} /> 
+					<div style={divStyle}>
+						<span style={{paddingRight: '20px'}}>
+							Symbol:
 						</span>
+						
+						<input type="text" name="Symbol" onChange={this.handleSymbolChange} style={textboxStyle} />
+						
+						<br/>
+						
+						<input type="button" value="Look Up" onClick={this.handleLookUp} style={button} /> 
 					</div>
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
+					<div style={divStyle}>
 						Stock Price:
-						<span style={{paddingLeft: '20px'}}>
+						<span style={spanStyle}>
 							$
-							<input type="text" name="Price" value={this.state.stockPrice} onChange={this.handleStockPriceChange}/>
+							<input type="text" name="Price" value={this.state.stockPrice} onChange={this.handleStockPriceChange} style={textboxStyle} />
 						</span>
 					</div>
 				</div>
@@ -131,51 +178,51 @@ class Form extends React.Component {
 				
 				<div>
 					<div>
-						<h3> Option </h3>
+						<h2 style={h2Style}> Option </h2>
 					</div>
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
+					<div style={divStyle}>
 						Buy or write:
-						<span style={{paddingLeft: '20px'}}>
-							<input type="radio" id="buy" name="Buy or Write" value="buy" checked={this.state.buyOrWrite === "buy"} onChange={this.handleBuyOrWriteChange} />
-							<label for="buy" style={{paddingRight: '20px'}}> Buy </label>
+						<span style={spanStyle}>
+							<input type="radio" id="buy" name="Buy or Write" value="buy" checked={this.state.buyOrWrite === "buy"} onChange={this.handleBuyOrWriteChange} style={radioButtonStyle} />
+							<label for="buy" style={radioStyle}> Buy </label>
 						
-							<input type="radio" id="write" name="Buy or Write" value="write" checked={this.state.buyOrWrite === "write"} onChange={this.handleBuyOrWriteChange} />
-							<label for="write"> Write </label>
+							<input type="radio" id="write" name="Buy or Write" value="write" checked={this.state.buyOrWrite === "write"} onChange={this.handleBuyOrWriteChange} style={radioButtonStyle} />
+							<label for="write" style={radioStyle}> Write </label>
 						</span>
 					</div> 
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
+					<div style={divStyle}>
 						Price per Option:
-						<span style={{paddingLeft: '20px'}}>
+						<span style={spanStyle}>
 							$
-							<input type="text" name="PPO" id="PPO" onChange={this.handlePPOChange} />
+							<input type="text" name="PPO" id="PPO" onChange={this.handlePPOChange} style={textboxStyle} />
 						</span>
 					</div>
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
+					<div style={divStyle}>
 						Contracts:
-						<span style={{paddingLeft: '20px'}}>
-							<input type="text" name="Contracts" id="Contracts" onChange={this.handleContractChange} style={{paddingRight: '20px'}} />
+						<span style={spanStyle}>
+							<input type="text" name="Contracts" id="Contracts" onChange={this.handleContractChange} style={textboxStyle} />
 							x 100
 						</span>
 					</div>
 					
 					<br/>
 					
-					<div style={{paddingUp: '20px'}}>
+					<div style={divStyle}>
 						Total Cost:
 						<div id="total" value={this.state.totalCost}>{this.state.totalCost}</div>
 					</div>
 				</div>
 				
-				<input type="submit" value="Calculate" onClick={this.handleSubmit} />
+				<input type="submit" value="Calculate" onClick={this.handleSubmit} style={button} />
 			</form>
 		);
 	}
