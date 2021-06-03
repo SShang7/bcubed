@@ -141,7 +141,7 @@ class Form extends React.Component {
 	//<!onSubmit={this.handleSubmit}>
 	render() {
 		const highlightColor = '#3500d3'; //#3500d3
-		const textColor = 'whitesmoke'; //#fffdd0
+		const textColor = '#4863A0'; //#fffdd0
 		
 		const divStyle = {
 			paddingUp: '20px'
