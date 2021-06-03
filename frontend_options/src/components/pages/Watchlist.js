@@ -24,6 +24,9 @@ export default function Watchlist() {
         });
         this.setState({ studentslist: studentlist });
       });
+      fetch('/tickers', {"uid": firebase.auth().currentUser.uid, "tickers": this.state.studentslist}).then(res => res.json()).then(data => {
+        
+      });
     }
 
     render() {

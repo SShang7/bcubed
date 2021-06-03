@@ -3,13 +3,34 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import "./Trends.css";
+import firebase from "firebase/app";
+
 
 export default function Trends() {
   const [ticker, setTicker] = useState("");
   const [button, setButton] = useState(false);
   const [success, setSuccess] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [url, setURL] = useState('');
+
+  const config = {
+    apiKey: "AIzaSyCMdjEwurne0SvBdLzsN4MUnOFuDwah-vo",
+    authDomain: "auth-development-1e056.firebaseapp.com",
+    databaseURL: "https://auth-development-1e056-default-rtdb.firebaseio.com/",
+    projectId: "auth-development-1e056",
+    storageBucket: "auth-development-1e056.appspot.com",
+    messagingSenderId: "729954982605",
+    appId: "1:729954982605:web:d523efc16e31ce0164e784"
+  }
+  
+  firebase.initializeApp(config)
+  const storage = firebase.storage().ref()
+
+  function Image (image) {
+    storage.child(`${image}.png`).getDownloadURL().then((url) => {
+      setURL(url);
+    })
+  }
 
   function validateForm() {
     return ticker.length > 0;
@@ -20,26 +41,14 @@ export default function Trends() {
   }
 
   function clicked() {
-    const myRequest = new Request({ ticker }, { //fetched url TBD
-      /*
-      method: 'GET',
-      headers: myHeaders,
-      mode: 'cors',
-      cache: 'default',
-      */
-      //pretty sure this isn't necessary
-    });
     setButton(true);
-    fetch(myRequest)
+    fetch('/image', {ticker: ticker})
       .then((response) => {
         setLoading(false);
         if (response.ok) {
           return response.json();
         }
         setSuccess(false);
-      })
-      .then((data) => {
-        setData(data);
       })
       .catch((error) => {
         console.log("Something went wrong.", error);
@@ -51,7 +60,7 @@ export default function Trends() {
     setTicker("")
     setSuccess(true);
     setLoading(true);
-    setData(null);
+    setURL('');
   };
 
   function clicked3() {
@@ -66,7 +75,7 @@ export default function Trends() {
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1>Trends for {ticker}:</h1>
+              <h1>Trends for {url}:</h1>
             </div>
             <div className="image">
               <img src="" alt="test" />
@@ -84,20 +93,19 @@ export default function Trends() {
               </Form.Row>
             </Form>
           </div>) :
-          (
-            <div align="center">
+          (<div align="center">
               <h2>Could not fetch data on trends for {ticker}:</h2>
               <Form>
                 <Form.Row className="justify-content-md-center">
                   <Col xs="auto">
                     <Button block onClick={() => clicked2()}>
                       Back
-        </Button>
+                    </Button>
                   </Col>
                 </Form.Row>
               </Form>
-            </div>
-          ))
+            </div>)
+        )
       ) : (
         <div align="center">
           <h2>This is the trends page!</h2>
