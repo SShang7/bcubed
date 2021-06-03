@@ -41,11 +41,11 @@ export default function Trends() {
 
   function clicked() {
     setButton(true);
-    fetch("/images", {ticker: ticker})
+    fetch("/images", {ticker: ticker.current.value})
       .then((response) => {
         setLoading(false);
         if (response.ok) {
-          Image(ticker);
+          Image(ticker.current.value);
         } else {
         setSuccess(false);
         }
