@@ -14,9 +14,9 @@ import datetime
 
 
 END_DATE = datetime.datetime.now()
-INTERVAL = datetime.timedelta(50)
+INTERVAL = datetime.timedelta(100)
 START_DATE = END_DATE-INTERVAL
-STOCK = ['ZM', 'AMC', 'GME']
+STOCK = 'ZM'
 
     
 def get_data(ticker):
@@ -68,5 +68,5 @@ def get_data(ticker):
         plt.title(ticker)
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
-for stock in STOCK:
-    get_data(stock)
+
+get_data(STOCK)
