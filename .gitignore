@@ -374,3 +374,5 @@ flask-backend/static/react/js/runtime-main.193ff6ea.js.map
 flask-backend/static/react/static/css/main.557eefb3.chunk.css
 flask-backend/static/react/static/css/main.557eefb3.chunk.css.map
 flask-backend/templates/index.html
+
+*.png
