@@ -23,8 +23,6 @@ def my_index():
 
 @app.route("/images")
 def grab_data():
-    login_json = request.json.get()
-    ticker = login_json.get("ticker")
-    get_data(ticker)
+    print(request.form)
     
 app.run(debug = True)

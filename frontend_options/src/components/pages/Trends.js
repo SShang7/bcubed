@@ -41,11 +41,18 @@ export default function Trends() {
 
   function clicked() {
     setButton(true);
-    fetch("/images", {ticker: ticker.current.value})
+    const data = { ticker: ticker };
+    fetch("/images", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+    })
       .then((response) => {
         setLoading(false);
         if (response.ok) {
-          Image(ticker.current.value);
+          Image(ticker);
         } else {
         setSuccess(false);
         }
