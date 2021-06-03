@@ -23,6 +23,7 @@ def filter_data(stock_data, col):
     weekdays = pd.date_range(start=START_DATE, end=END_DATE)
     clean_data = stock_data[col].reindex(weekdays)
     return clean_data.fillna(method='ffill')
+
 def create_plot(stock_data, ticker):
     plt.subplots(figsize=(15,8))
     plt.plot(stock_data, label=ticker)
@@ -30,7 +31,8 @@ def create_plot(stock_data, ticker):
     plt.ylabel('Close Price')
     plt.legend()
     plt.title('Chart Concept')
-    plt.savefig('chart_concept.png')
+    plt.savefig('chart_concept.png') 
+
     
 def get_data(ticker):
     try:
@@ -41,9 +43,13 @@ def get_data(ticker):
         exp2 = stock_data.ewm(span=26, adjust=False).mean()
         macd = exp1 - exp2
         exp3 = macd.ewm(span=9, adjust=False).mean()
-        macd.plot(label='GOOGL MACD', color='g')
+        plt.subplot(2, 1, 2)
+
         ax = exp3.plot(label='Signal Line', color='r')
-        stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
+        macd.plot(ax=ax, label='GOOGL MACD', color='g')
+        plt.subplot(2, 1, 1)
+        stock_data.plot(sharex=ax, label='GOOGL')
+        plt.show()
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 get_data(STOCK)
