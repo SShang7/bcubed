@@ -16,19 +16,8 @@ import datetime
 END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(50)
 START_DATE = END_DATE-INTERVAL
-STOCK = ['UAL', 'AAL', 'DAL']
-def filter_data(stock_data, col):
-    weekdays = pd.date_range(start=START_DATE, end=END_DATE)
-    clean_data = stock_data[col].reindex(weekdays)
-    return clean_data.fillna(method='ffill')
-def create_plot(stock_data, ticker):
-    plt.subplots(figsize=(15,8))
-    plt.plot(stock_data, label=ticker)
-    plt.xlabel('Date')
-    plt.ylabel('Close Price')
-    plt.legend()
-    plt.title('Chart Concept')
-    plt.savefig('chart_concept.png')
+STOCK = ['ZM', 'AMC', 'GME']
+
     
 def get_data(ticker):
     try:
@@ -65,11 +54,18 @@ def get_data(ticker):
                 continue
             if (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
                 bull.append(date)
-        print('bull: ', bull)
-        print('bear: ',bear)
-        macd.plot(label='MACD', color='g')
-        ax = signal.plot(label='Signal Line', color='r')
-        stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
+        print('bull '+ ticker + ': ', bull)
+        print('bear '+ ticker + ': ', bear)
+        
+        exp3 = macd.ewm(span=9, adjust=False).mean()
+        plt.subplot(2, 1, 2)
+        ax = exp3.plot(label='Signal Line', color='r')
+        macd.plot(ax=ax, label='MACD', color='g')
+        plt.subplot(2, 1, 1)
+        stock_data.plot(sharex=ax)
+        plt.xlabel('Date')
+        plt.ylabel('Close Price')
+        plt.title(ticker)
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 for stock in STOCK:
