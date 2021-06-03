@@ -23,7 +23,6 @@ export default function Trends() {
     appId: "1:729954982605:web:d523efc16e31ce0164e784"
   }
   
-  firebase.initializeApp(config)
   const storage = firebase.storage().ref()
 
   function Image (image) {
@@ -42,17 +41,18 @@ export default function Trends() {
 
   function clicked() {
     setButton(true);
-    fetch('/image', {ticker: ticker})
+    fetch("/images", {ticker: ticker})
       .then((response) => {
         setLoading(false);
         if (response.ok) {
-          return response.json();
-        }
+          Image(ticker);
+        } else {
         setSuccess(false);
-      })
+        }
+      })/*
       .catch((error) => {
         console.log("Something went wrong.", error);
-      });
+      });*/
   };
 
   function clicked2() {
@@ -75,10 +75,10 @@ export default function Trends() {
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1>Trends for {url}:</h1>
+              <h1>Trends for {ticker}:</h1>
             </div>
             <div className="image">
-              <img src="" alt="test" />
+              <img src={url} alt="test" />
             </div>
             <Form>
               <Form.Row className="justify-content-md-center">
