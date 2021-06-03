@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
 import "./Trends.css";
 
 export default function Trends() {
@@ -44,45 +45,121 @@ export default function Trends() {
         console.log("Something went wrong.", error);
       });
   };
-  
+
+  function clicked2() {
+    setButton(false);
+    setTicker("")
+    setSuccess(true);
+    setLoading(true);
+    setData(null);
+  };
+
+  function clicked3() {
+
+  }
+
   return (
     button ?
       (loading ? (<div className="loading">
         <h1>Loading...</h1>
       </div>) :
         (success ?
-          (<div>
+          (<div align="center">
             <div className="trendinfo">
               <h1>Trends for {ticker}:</h1>
             </div>
             <div className="image">
-              <img src="" alt="test"/>
+              <img src="" alt="test" />
             </div>
+            <Form>
+              <Form.Row className="justify-content-md-center">
+                <Col xs="auto">
+                  <Button block onClick={() => clicked2()}>
+                    Back
+                  </Button>
+                  <Button block onClick={() => clicked3()}>
+                    Add to Watchlist
+                  </Button>
+                </Col>
+              </Form.Row>
+            </Form>
           </div>) :
-          (<div className="failure">
-            <h1>Could not fetch data on trends for {ticker}:</h1>
-          </div>)))
-      :
-      (<div className="TrendSubmit" align="center">
-        <Form onSubmit={handleSubmit}>
-          <div className="trendintro">
-            <h1>This is the trends page!</h1>
-            <h2>Select a ticker:</h2>
-          </div>
-          <div className="Ticker">
-            <Form.Group size="lg" controlId="ticker">
-              <Form.Control
-                autoFocus
-                type="ticker"
-                value={ticker}
-                onChange={(e) => setTicker(e.target.value)}
-              />
-            </Form.Group>
-            <Button block onClick={() => clicked()} size="sm" type="submit" disabled={!validateForm()}>
-              Go
-          </Button>
-          </div>
-        </Form>
-      </div>)
-  );
+          (
+            <div align="center">
+              <h2>Could not fetch data on trends for {ticker}:</h2>
+              <Form>
+                <Form.Row className="justify-content-md-center">
+                  <Col xs="auto">
+                    <Button block onClick={() => clicked2()}>
+                      Back
+        </Button>
+                  </Col>
+                </Form.Row>
+              </Form>
+            </div>
+          ))
+      ) : (
+        <div align="center">
+          <h2>This is the trends page!</h2>
+          <h3>Select a ticker:</h3>
+          <Form>
+            <Form.Row className="justify-content-md-center">
+              <Col sm={1}>
+                <Form.Control
+                  autoFocus
+                  type="ticker"
+                  value={ticker}
+                  onChange={(e) => setTicker(e.target.value)}
+                  placeholder="ticker"
+                />
+              </Col>
+              <Col xs="auto">
+                <Button block onClick={() => clicked()} type="submit" disabled={!validateForm()}>
+                  Go
+                </Button>
+              </Col>
+            </Form.Row>
+          </Form>
+        </div>
+      ));
 }
+
+/*
+<div align="center">
+  <h2>This is the trends page!</h2>
+  <h3>Select a ticker:</h3>
+  <Form>
+    <Form.Row className="justify-content-md-center">
+      <Col sm={1}>
+        <Form.Control
+          autoFocus
+          type="ticker"
+          value={ticker}
+          onChange={(e) => setTicker(e.target.value)}
+          placeholder="ticker"
+        />
+      </Col>
+      <Col xs="auto">
+        <Button block onClick={() => clicked()} type="submit" disabled={!validateForm()}>
+          Go
+        </Button>
+      </Col>
+    </Form.Row>
+  </Form>
+</div>
+*/
+
+/*
+<div align="center">
+  <h1>Could not fetch data on trends for {ticker}:</h1>
+  <Form>
+    <Form.Row className="justify-content-md-center">
+      <Col xs="auto">
+        <Button block onClick={() => clicked2()}>
+          Back
+        </Button>
+      </Col>
+    </Form.Row>
+  </Form>
+</div>
+*/

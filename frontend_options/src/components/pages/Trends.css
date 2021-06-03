@@ -1,10 +1,10 @@
-.trendinfo {
-    padding: 60px;
-  }
 
+.trendintro {
+  padding: 60px;
+}
 .Ticker {
-    margin-top: 10px;
-    margin-left: 30px;
-    display: flex;
-    justify-content: center;
+  margin-top: 10px;
+  margin-left: 30px;
+  display: flex;
+  justify-content: center;
 }
