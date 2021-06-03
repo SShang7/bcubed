@@ -13,12 +13,10 @@ import numpy as np
 import datetime
 
 
-RAW_END_DATE = datetime.datetime.now()
-INTERVAL = datetime.timedelta(100)
-RAW_START_DATE = RAW_END_DATE-INTERVAL
-END_DATE = str(RAW_END_DATE.strftime("%Y-%m-%d"))
-START_DATE = str(RAW_START_DATE.strftime("%Y-%m-%d"))
-STOCK = 'GOOGL'
+END_DATE = datetime.datetime.now()
+INTERVAL = datetime.timedelta(50)
+START_DATE = END_DATE-INTERVAL
+STOCK = ['UAL', 'AAL', 'DAL']
 def filter_data(stock_data, col):
     weekdays = pd.date_range(start=START_DATE, end=END_DATE)
     clean_data = stock_data[col].reindex(weekdays)
@@ -34,10 +32,45 @@ def create_plot(stock_data, ticker):
     
 def get_data(ticker):
     try:
-        stock_data = data.DataReader(ticker, 'yahoo', START_DATE, END_DATE)
-        stock_data = filter_data(stock_data, 'Adj Close')
-        print(stock_data)
-        create_plot(stock_data, 'GOOGL')
+        stock_data = data.get_data_yahoo(ticker, START_DATE, END_DATE)['Adj Close']
+        #print(stock_data)
+        #create_plot(stock_data, 'GOOGL')
+        exp1 = stock_data.ewm(span=12, adjust=False).mean()
+        exp2 = stock_data.ewm(span=26, adjust=False).mean()
+        macd = exp1 - exp2
+        signal = macd.ewm(span=9, adjust=False).mean()
+        top_bot_cross = []
+        bot_top_cross = []
+        last_date = macd.index[0]
+        # looking for crossovers
+        for date, value in macd.items():
+            if date == START_DATE:
+                continue
+            if (macd[last_date] > signal[last_date]) and (signal[date] > macd[date]):
+                top_bot_cross.append(date)
+            elif (macd[last_date] < signal[last_date]) and (signal[date] < macd[date]):
+                bot_top_cross.append(date)
+            last_date = date
+        last_date = top_bot_cross[0]
+        bull = []
+        bear = []
+        for date in top_bot_cross:
+            if date == top_bot_cross[0]:
+                continue
+            if (stock_data[last_date] < stock_data[date]) and (macd[last_date]>macd[date]):
+                bear.append(date)
+        last_date = bot_top_cross[0]
+        for date in bot_top_cross:
+            if date == bot_top_cross[0]:
+                continue
+            if (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
+                bull.append(date)
+        print('bull: ', bull)
+        print('bear: ',bear)
+        macd.plot(label='MACD', color='g')
+        ax = signal.plot(label='Signal Line', color='r')
+        stock_data.plot(ax=ax, secondary_y=True, label='GOOGL')
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
-get_data(STOCK)
+for stock in STOCK:
+    get_data(stock)
