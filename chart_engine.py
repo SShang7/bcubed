@@ -11,12 +11,25 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import datetime
+import pyrebase
+
+config = {
+    "apiKey": "AIzaSyCMdjEwurne0SvBdLzsN4MUnOFuDwah-vo",
+    "authDomain": "auth-development-1e056.firebaseapp.com",
+    "databaseURL": "https://auth-development-1e056-default-rtdb.firebaseio.com/",
+    "projectId": "auth-development-1e056",
+    "storageBucket": "auth-development-1e056.appspot.com",
+    "messagingSenderId": "729954982605",
+    "appId": "1:729954982605:web:d523efc16e31ce0164e784"    
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
 
 
 END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(100)
 START_DATE = END_DATE-INTERVAL
-STOCK = 'ZM'
+STOCK = 'GOOGL'
 
     
 def get_data(ticker):
@@ -66,6 +79,9 @@ def get_data(ticker):
         plt.xlabel('Date')
         plt.ylabel('Close Price')
         plt.title(ticker)
+        plt.savefig(ticker+".png")
+        path_on_cloud = "images/"+ticker+".png"
+        storage.child(path_on_cloud).put(ticker+".png")
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 
