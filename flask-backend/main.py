@@ -1,5 +1,5 @@
 import flask
-from .chart_engine import chart_engine
+from chart_engine import get_data
 from flask import Flask, jsonify, request
 from firebase_admin import db
 app = flask.Flask("__main__")
@@ -26,6 +26,6 @@ def grab_data():
     if not login_json:
         return jsonify({'msg': 'Missing JSON'}), 400
     ticker = login_json.get("ticker")
-    chart_engine.get_data(ticker)
+    get_data(ticker)
     
 app.run(debug = True)
