@@ -1,5 +1,5 @@
 import flask
-from . import chart_engine
+from .chart_engine import chart_engine
 from flask import Flask, jsonify, request
 from firebase_admin import db
 app = flask.Flask("__main__")
