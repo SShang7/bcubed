@@ -70,12 +70,15 @@ export default function Trends() {
   return (
     button ?
       (loading ? (<div className="loading">
-        <h1>Loading...</h1>
+        <h1 style={{ color: 'white' }}>Loading...</h1>
+        <Button block onClick={() => clicked2()} size="sm" type="submit">
+          Back
+          </Button>
       </div>) :
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1>Trends for {ticker}:</h1>
+              <h1 style={{ color: 'white' }}>Trends for {ticker}:</h1>
             </div>
             <div className="image">
               <img src={url} alt="test" />
