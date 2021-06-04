@@ -29,14 +29,12 @@ storage = firebase.storage()
 END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(100)
 START_DATE = END_DATE-INTERVAL
-#STOCK = 'GOOGL'
+STOCK = 'AMD'
 
     
 def get_data(ticker):
     try:
         stock_data = data.get_data_yahoo(ticker, START_DATE, END_DATE)['Adj Close']
-        #print(stock_data)
-        #create_plot(stock_data, 'GOOGL')
         exp1 = stock_data.ewm(span=12, adjust=False).mean()
         exp2 = stock_data.ewm(span=26, adjust=False).mean()
         macd = exp1 - exp2
@@ -86,8 +84,8 @@ def get_data(ticker):
         plt.title(ticker)
         plt.savefig("image.png")
         path_on_cloud = "image.png"
-        storage.child(path_on_cloud).put(ticker+".png")
+        storage.child(path_on_cloud).put("image.png")
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
 
-#get_data(STOCK)
+get_data(STOCK)
