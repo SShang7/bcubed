@@ -141,7 +141,7 @@ class Form extends React.Component {
 	//<!onSubmit={this.handleSubmit}>
 	render() {
 		const highlightColor = '#3500d3'; //#3500d3
-		const textColor = '#4863A0'; //#fffdd0
+		const textColor = '#fcfce8'; //#fcfce8
 		const textboxColor = '#fffdd0';
 		
 		const divStyle = {
@@ -166,7 +166,7 @@ class Form extends React.Component {
 			paddingRight: '20px'
 		};
 	
-		const textboxStyle = {
+		const textboxStyle = 
 			backgroundColor: textColor,
 			color: textboxColor,
 			height: '25px',
@@ -186,7 +186,7 @@ class Form extends React.Component {
 		};
 	
 		return (
-			<form style={{color: textColor, fontSize: '25px'}}>
+			<form style={{color: textColor, fontSize: '15px'}}>
 				<div>
 					<div style={divStyle}>
 						<h2 style={h2Style}>
@@ -341,14 +341,15 @@ class Form extends React.Component {
 }
 
 //<input type="submit" value="Log" onClick={this.handleSubmit} style={button} />
+//transform: 'translate(-50%, -50%)'
 
 function OPC() {
 	
     return (
         <div
 			style={{
-			position: 'absolute', left: '50%', top: '50%',
-			transform: 'translate(-50%, -50%)'
+			verticalAlign: 'sub',
+			position: 'absolute', left: '50%',
 		}}
 		>
 			<div>
