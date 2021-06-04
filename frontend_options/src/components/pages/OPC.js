@@ -82,12 +82,14 @@ class Form extends React.Component {
 		var value = event.target.value;
 		this.setState({ppo: value});
 		this.getTotal(this.state.contracts, value); 
+		this.getROI(this.state.openCommission);
 	}
 	
 	handleContractChange(event) {
 		var value = event.target.value;
 		this.setState({contracts: value});
 		this.getTotal(value, this.state.ppo);
+		this.getROI(this.state.openCommission);
 	}
 	
 	handleSymbolChange(event) {
@@ -119,6 +121,7 @@ class Form extends React.Component {
 		
 		this.setState({exitCommission: value});
 		this.getDifference(this.state.openCommission, value, this.state.exitValue);
+		this.getROI(this.state.openCommission);
 	}
 	
 	handleExitDate(event) {
@@ -130,6 +133,7 @@ class Form extends React.Component {
 		
 		this.setState({exitValue: value});
 		this.getDifference(this.state.openCommission, this.state.exitCommission, value);
+		this.getROI(this.state.openCommission);
 	}
 
 	handleSubmit(event) {
@@ -157,7 +161,7 @@ class Form extends React.Component {
 		};
 		
 		const radioButtonStyle = {
-			transform: 'scale(2)',
+			transform: 'scale(1.5)',
 			marginRight: '10px',
 			marginLeft: '8px'
 		};
@@ -167,8 +171,8 @@ class Form extends React.Component {
 		};
 	
 		const textboxStyle = {
-			backgroundColor: textColor,
-			color: textboxColor,
+			backgroundColor: textboxColor,
+			color: textColor,
 			height: '25px',
 			fontSize: '25px',
 			marginRight: '10px'
@@ -176,13 +180,13 @@ class Form extends React.Component {
 		
 		const button = {
 			marginTop: '20px',
-			height: '30px',
-			width: '150px',
-			fontSize: '25px',
+			height: '20px',
+			width: '100px',
+			fontSize: '20px',
 			backgroundColor: textColor,
 			color: highlightColor,
 			textAlign: 'center',
-			lineHeight: '25px'
+			lineHeight: '20px'
 		};
 	
 		return (
@@ -348,8 +352,9 @@ function OPC() {
     return (
         <div
 			style={{
-			verticalAlign: 'sub',
-			position: 'absolute', left: '50%',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center'
 		}}
 		>
 			<div>
