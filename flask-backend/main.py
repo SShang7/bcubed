@@ -23,6 +23,11 @@ def my_index():
 
 @app.route("/images")
 def grab_data():
-    print(request.form)
+    # Get a database reference to our posts
+    ref = db.reference('tickers')
+
+    # Read the data at the posts reference (this is a blocking operation)
+    print(ref.get())
+    get_data(ref.get().values()[0])
     
 app.run(debug = True)
