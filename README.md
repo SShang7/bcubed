@@ -26,7 +26,7 @@ we also find that running npm install beforehand resolves many potential issues
  $ pip install matplotlib
  $ pip install firebase_admin
  $ pip install pyrebase
- $ npm install firebase
+ $ npm install firebase@8.6.3
 
 #Step 2
 
