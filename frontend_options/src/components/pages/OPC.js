@@ -45,10 +45,18 @@ class Form extends React.Component {
 		return total;
 	}
 	
-	getDifference(openCommission, exitCommission, exitValue) {
+	/*getDifference(openCommission, exitCommission, exitValue) {
 		var diff;
 		
 		var openValue = this.state.totalCost;
+		
+		if (openCommission === "") {
+			openCommission = 0;
+		}
+			
+		if (exitCommission === "") {
+			exitCommission = 0;
+		}
 		
 		if (openCommission !== "" && exitCommission !== "" && exitValue !== "" && openValue !== "") {
 			diff = parseFloat(exitValue) - parseFloat(exitCommission) - (parseFloat(openValue) - parseFloat(openCommission));
@@ -59,16 +67,24 @@ class Form extends React.Component {
 		this.setState({difference: diff});
 		
 		return diff;
-	}
+	}*/
 	
-	getROI(openCommission) {
+	getROI(openCommission, exitCommission, exitValue, contracts, ppo) {
 		var ROI;
-		var openValue = this.state.totalCost;
+		var openValue = this.getTotal(contracts, ppo);
 		
-		if (openCommission !== "" && openValue !== "" && this.state.difference !== "") {
+		if (openCommission === "") {
+			openCommission = 0;
+		}
+		
+		if (exitCommission === "") {
+			exitCommission = 0;
+		}
+		
+		if (openCommission !== "" && openValue !== "" && exitValue !== "" && exitCommission !== "" && openValue !== "") {
 			var openValue = this.state.totalCost;
 			
-			ROI = parseFloat(this.state.difference) / (parseFloat(openValue) - parseFloat(openCommission));
+			ROI = (parseFloat(exitValue) - parseFloat(exitCommission) - (parseFloat(openValue) - parseFloat(openCommission))) / (parseFloat(openValue) - parseFloat(openCommission));
 		} else {
 			ROI = 0;
 		}
@@ -82,14 +98,14 @@ class Form extends React.Component {
 		var value = event.target.value;
 		this.setState({ppo: value});
 		this.getTotal(this.state.contracts, value); 
-		this.getROI(this.state.openCommission);
+		this.getROI(this.state.openCommission, this.state.exitCommission, this.state.exitValue, this.state.contracts, value);
 	}
 	
 	handleContractChange(event) {
 		var value = event.target.value;
 		this.setState({contracts: value});
 		this.getTotal(value, this.state.ppo);
-		this.getROI(this.state.openCommission);
+		this.getROI(this.state.openCommission, this.state.exitCommission, this.state.exitValue, value, this.state.ppo);
 	}
 	
 	handleSymbolChange(event) {
@@ -112,16 +128,14 @@ class Form extends React.Component {
 		var value = event.target.value;
 		
 		this.setState({openCommission: value});
-		this.getDifference(value, this.state.exitCommission, this.state.exitValue);
-		this.getROI(value);
+		this.getROI(value, this.state.exitCommission, this.state.exitValue, this.state.contracts, this.state.ppo);
 	}
 	
 	handleExitCommission(event) {
 		var value = event.target.value;
 		
 		this.setState({exitCommission: value});
-		this.getDifference(this.state.openCommission, value, this.state.exitValue);
-		this.getROI(this.state.openCommission);
+		this.getROI(this.state.openCommission, value, this.state.exitValue, this.state.contracts, this.state.ppo);
 	}
 	
 	handleExitDate(event) {
@@ -132,8 +146,7 @@ class Form extends React.Component {
 		var value = event.target.value;
 		
 		this.setState({exitValue: value});
-		this.getDifference(this.state.openCommission, this.state.exitCommission, value);
-		this.getROI(this.state.openCommission);
+		this.getROI(this.state.openCommission, this.state.exitCommission, value, this.state.contracts, this.state.ppo);
 	}
 
 	handleSubmit(event) {
@@ -268,13 +281,6 @@ class Form extends React.Component {
 					<br/>
 					
 					<div style={divStyle}>
-						Total Value:
-						<div id="total" value={this.state.totalCost}>{this.state.totalCost}</div>
-					</div>
-					
-					<br/>
-					
-					<div style={divStyle}>
 						Expiration Date:
 						<span style={spanStyle}>
 							<input type="text" name="Expiration Date" id="Expiration Date" onChange={this.handleExpirationDate} style={textboxStyle} placeholder="MM/DD/YYYY" />
@@ -289,6 +295,12 @@ class Form extends React.Component {
 							<input type="text" name="Open Commission" id="Open Commission" onChange={this.handleOpenCommission} style={textboxStyle} placeholder="0" />
 						</span>
 					</div>
+					
+					<div style={divStyle}>
+						Total Value:
+						<div id="total" value={this.state.totalCost}>${this.state.totalCost - this.state.openCommission}</div>
+					</div>
+					
 				</div>
 				
 				<br/>
@@ -331,9 +343,16 @@ class Form extends React.Component {
 					<br/>
 					
 					<div style={divStyle}>
+						Exit Value:
+						<div id="total" value={this.state.exitValue}>${this.state.exitValue - this.state.exitCommission}</div>
+					</div>
+					
+					<br/>
+					
+					<div style={divStyle}>
 						Return on Investment:
 						<span style={spanStyle}>
-							<div id="total" value={this.state.roi}>{this.state.roi}</div>
+							<div id="total" value={this.state.roi}>{this.state.roi * 100}%</div>
 						</span>
 					</div>
 
