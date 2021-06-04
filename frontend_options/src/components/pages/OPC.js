@@ -166,7 +166,7 @@ class Form extends React.Component {
 			paddingRight: '20px'
 		};
 	
-		const textboxStyle = 
+		const textboxStyle = {
 			backgroundColor: textColor,
 			color: textboxColor,
 			height: '25px',
