@@ -53,20 +53,25 @@ def get_data(ticker):
             elif (macd[last_date] < signal[last_date]) and (signal[date] < macd[date]):
                 bot_top_cross.append(date)
             last_date = date
-        last_date = top_bot_cross[0]
+        if len(top_bot_cross) > 0:
+            last_date = top_bot_cross[0]
         bull = []
         bear = []
+        
         for date in top_bot_cross:
             if date == top_bot_cross[0]:
                 continue
             if (stock_data[last_date] < stock_data[date]) and (macd[last_date]>macd[date]):
                 bear.append(date)
-        last_date = bot_top_cross[0]
+            last_date = date
+        if len(bot_top_cross) > 0:
+            last_date = bot_top_cross[0]
         for date in bot_top_cross:
             if date == bot_top_cross[0]:
                 continue
             if (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
                 bull.append(date)
+            last_date = date
         print('bull '+ ticker + ': ', bull)
         print('bear '+ ticker + ': ', bear)
         
@@ -79,8 +84,8 @@ def get_data(ticker):
         plt.xlabel('Date')
         plt.ylabel('Close Price')
         plt.title(ticker)
-        plt.savefig(ticker+".png")
-        path_on_cloud = "images/"+ticker+".png"
+        plt.savefig("image.png")
+        path_on_cloud = "image.png"
         storage.child(path_on_cloud).put(ticker+".png")
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
