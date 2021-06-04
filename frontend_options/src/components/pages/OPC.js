@@ -142,6 +142,7 @@ class Form extends React.Component {
 	render() {
 		const highlightColor = '#3500d3'; //#3500d3
 		const textColor = '#4863A0'; //#fffdd0
+		const textboxColor = '#fffdd0';
 		
 		const divStyle = {
 			paddingUp: '20px'
@@ -167,7 +168,7 @@ class Form extends React.Component {
 	
 		const textboxStyle = {
 			backgroundColor: textColor,
-			color: highlightColor,
+			color: textboxColor,
 			height: '25px',
 			fontSize: '25px',
 			marginRight: '10px'
