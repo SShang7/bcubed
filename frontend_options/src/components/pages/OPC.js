@@ -141,8 +141,8 @@ class Form extends React.Component {
 	//<!onSubmit={this.handleSubmit}>
 	render() {
 		const highlightColor = '#3500d3'; //#3500d3
-		const textColor = '#fcfce8'; //#fcfce8
-		const textboxColor = '#fffdd0';
+		const textColor = '#4863A0'; //#fcfce8
+		const textboxColor = '#fcfce8';
 		
 		const divStyle = {
 			paddingUp: '20px'
@@ -152,7 +152,7 @@ class Form extends React.Component {
 			paddingLeft: '20px'
 		};
 		
-		const h2Style = {
+		const h3Style = {
 			color: highlightColor
 		};
 		
@@ -186,12 +186,12 @@ class Form extends React.Component {
 		};
 	
 		return (
-			<form style={{color: textColor, fontSize: '15px'}}>
+			<form style={{color: textColor, fontSize: '20px'}}>
 				<div>
 					<div style={divStyle}>
-						<h2 style={h2Style}>
+						<h3 style={h3Style}>
 							Input the Requested Info
-						</h2>
+						</h3>
 						
 						<br/>
 						
@@ -209,7 +209,7 @@ class Form extends React.Component {
 			
 				<div>
 					<div>
-						<h2 style={h2Style}> Stock Symbol </h2>
+						<h3 style={h3Style}> Stock Symbol </h3>
 					</div>
 					
 					<br/>
@@ -225,7 +225,7 @@ class Form extends React.Component {
 				
 				<div>
 					<div>
-						<h2 style={h2Style}> Open Option </h2>
+						<h3 style={h3Style}> Open Option </h3>
 					</div>
 					
 					<br/>
@@ -292,9 +292,9 @@ class Form extends React.Component {
 				<div style={divStyle}>
 				
 					<div style={divStyle}>
-						<h2 style={h2Style}>
+						<h3 style={h3Style}>
 							Close Option
-						</h2>
+						</h3>
 					</div>
 					
 					<br/>
