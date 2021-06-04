@@ -61,6 +61,7 @@ export default function Watchlist() {
             </table>
 
           </div>
+          <Link className="loglink" to='/towatch'>add more favorites?</Link>
         </div>
       );
     }

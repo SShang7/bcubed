@@ -23,6 +23,7 @@ export default function ToWatch() {
                     <label for="exampleInputEmail1">Enter some tickers you'd like to favorite</label>
                     <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ticker" ref={tickerRef}></input>
                 </div>
+                <button type="submit">favorite</button>
             </form>
         </>
     )

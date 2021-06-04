@@ -18,6 +18,8 @@ app = flask.Flask("__main__")
 @app.route("/updateprofile")
 @app.route("/watchlist")
 @app.route("/tickers")
+@app.route("/tickerimage")
+
 def my_index():
     return flask.render_template("index.html", token="Hello FlaskReact")
 
