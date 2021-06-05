@@ -2,7 +2,7 @@
 
 ![Project Image](https://i.imgur.com/HGbe338.png)
 
-
+Disclaimer: it is unwise to trade off of one indicator.
 ---
 
 ### Table of Contents
