@@ -74,7 +74,6 @@ python main.py
 ```
 ### Step 5
 
-Open the server by following the link provided in the console to where your machine is locally hosting the development server.
-
+Open the server by following the link provided in the console to where your machine is locally hosting the development server: [localhost](http://127.0.0.1:5000/)
 
 [Back To The Top](#bcubed)
