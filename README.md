@@ -53,26 +53,26 @@ Step 4
 
 start the website using main.py by typing
 ```bash
-$ python main.py
+python main.py
 ```
 Step 5
 
 Open the server by following the link provided in the console to where your machine is locally hosting the development server.
 #### Installation
 ```bash
-$ cd frontend_options 
-$ npm install 
-$ npm install react-icons --save 
-$ npm install react-dom 
-$ npm install react-router-dom 
-$ npm install antd 
-$ npm install react-bootstrap bootstrap@4.6.0 
-$ pip install pandas $ pip install numpy 
-$ pip install pandas_datareader
-$ pip install matplotlib 
-$ pip install firebase_admin 
-$ pip install pyrebase 
-$ npm install firebase@8.6.3
+cd frontend_options 
+npm install 
+npm install react-icons --save 
+npm install react-dom 
+npm install react-router-dom 
+npm install antd 
+npm install react-bootstrap bootstrap@4.6.0 
+pip install pandas $ pip install numpy 
+pip install pandas_datareader
+pip install matplotlib 
+pip install firebase_admin 
+pip install pyrebase 
+npm install firebase@8.6.3
 ```
 
 
