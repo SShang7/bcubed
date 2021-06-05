@@ -39,7 +39,7 @@ Step 2
 
 create the production build by running
 ```bash
-$ npm run build
+npm run build
 ```
 This is placed inside /backend-options/static/react and can be run from the backend-options folder using a python file
 
