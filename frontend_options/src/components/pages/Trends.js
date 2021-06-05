@@ -29,6 +29,7 @@ export default function Trends() {
 
   async function clicked(e) {
     e.preventDefault()
+    setLoading(false);
     var data = {
       ticker: tickerRef.current.value,
     }
@@ -44,7 +45,6 @@ export default function Trends() {
       setSuccess(false);
       }
       setButton(true);
-      setLoading(false);
     });
     
   }
@@ -64,7 +64,7 @@ export default function Trends() {
   return (
     button ?
       (loading ? (<div className="loading">
-        <h1 style={{ color: 'white' }}>Loading...</h1>
+        <h1>Loading...</h1>
         <Button block onClick={() => clicked2()} size="sm" type="submit">
           Back
           </Button>
@@ -72,7 +72,7 @@ export default function Trends() {
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1>Trends for {ticker}:</h1>
+              <h1>Trends for {tickerRef.current.value}:</h1>
             </div>
             <div className="image">
               <img src={url} alt="test" />
@@ -91,7 +91,7 @@ export default function Trends() {
             </Form>
           </div>) :
           (<div align="center">
-            <h2>Could not fetch data on trends for {ticker}:</h2>
+            <h2>Could not fetch data on trends for {tickerRef.current.value}:</h2>
             <Form>
               <Form.Row className="justify-content-md-center">
                 <Col xs="auto">
