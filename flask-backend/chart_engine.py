@@ -24,12 +24,13 @@ config = {
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
+db = firebase.database()
 
 
 END_DATE = datetime.datetime.now()
 INTERVAL = datetime.timedelta(100)
 START_DATE = END_DATE-INTERVAL
-STOCK = 'AMD'
+#STOCK = 'AMD'
 
     
 def get_data(ticker):
@@ -85,7 +86,9 @@ def get_data(ticker):
         plt.savefig("image.png")
         path_on_cloud = "image.png"
         storage.child(path_on_cloud).put("image.png")
+        db.update({"report" : True})
     except RemoteDataError:
         print('No data found for {t}'.format(t=ticker))
+        db.update({"report" : False})
 
-get_data(STOCK)
+#get_data(STOCK)
