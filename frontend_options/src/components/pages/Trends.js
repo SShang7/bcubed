@@ -31,7 +31,9 @@ export default function Trends() {
     return ticker.length > 0;
   }
 
+  
   async function clicked(e) {
+
     e.preventDefault()
     setLoading(false);
     var data = {
@@ -61,9 +63,12 @@ export default function Trends() {
     setURL('');
   };
 
-  function clicked3() {
-
-  }
+  async function clicked3(e) {
+        var data = {
+            ticker: ticker
+        }
+      await firebase.database().ref('users/' + firebase.auth().currentUser.uid).push(data);
+    }
 
   return (
     button ?
@@ -83,13 +88,13 @@ export default function Trends() {
             </div>
             <Form>
               <Form.Row className="justify-content-md-center">
-                <Col xs="auto">
-                  <Button block onClick={() => clicked2()}>
-                    Back
-                  </Button>
-                  (login ? <Button block onClick={() => clicked3()}>
-                    Add to Watchlist
-                  </Button> : <></>)
+              <Col xs="auto">
+                <Button block onClick={() => clicked2()}>
+                  Back
+                </Button>
+              {login && <Button block onClick={() => clicked3()}>
+              Add to Watchlist
+            </Button>}
                 </Col>
               </Form.Row>
             </Form>
