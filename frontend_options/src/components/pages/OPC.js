@@ -176,7 +176,8 @@ class Form extends React.Component {
 		const radioButtonStyle = {
 			transform: 'scale(1.5)',
 			marginRight: '10px',
-			marginLeft: '8px'
+			marginLeft: '8px',
+			backgroundColor: textboxColor
 		};
 		
 		const radioStyle = {
@@ -201,6 +202,11 @@ class Form extends React.Component {
 			textAlign: 'center',
 			lineHeight: '20px'
 		};
+		
+	const calculation = {
+		fontWeight: 'bold',
+		color: highlightColor
+	}
 	
 		return (
 			<form style={{color: textColor, fontSize: '20px'}}>
@@ -296,9 +302,11 @@ class Form extends React.Component {
 						</span>
 					</div>
 					
+					<br/>
+					
 					<div style={divStyle}>
 						Total Value:
-						<div id="total" value={this.state.totalCost}>${this.state.totalCost - this.state.openCommission}</div>
+						<div id="total" value={this.state.totalCost} style={calculation}>${this.state.totalCost - this.state.openCommission}</div>
 					</div>
 					
 				</div>
@@ -327,6 +335,7 @@ class Form extends React.Component {
 					<div style={divStyle}>
 						Exit Value:
 						<span style={spanStyle}>
+							$
 							<input type="text" name="Exit Value" id="Exit Value" onChange={this.handleExitValue} style={textboxStyle} />
 						</span>
 					</div>
@@ -344,7 +353,7 @@ class Form extends React.Component {
 					
 					<div style={divStyle}>
 						Exit Value:
-						<div id="total" value={this.state.exitValue}>${this.state.exitValue - this.state.exitCommission}</div>
+						<div id="total" value={this.state.exitValue} style={calculation}>${this.state.exitValue - this.state.exitCommission}</div>
 					</div>
 					
 					<br/>
@@ -352,7 +361,7 @@ class Form extends React.Component {
 					<div style={divStyle}>
 						Return on Investment:
 						<span style={spanStyle}>
-							<div id="total" value={this.state.roi}>{this.state.roi * 100}%</div>
+							<div id="total" value={this.state.roi} style={calculation}>{this.state.roi * 100}%</div>
 						</span>
 					</div>
 
