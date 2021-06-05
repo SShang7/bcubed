@@ -35,7 +35,7 @@ export default function Trends() {
     e.preventDefault()
     setLoading(false);
     var data = {
-      ticker: tickerRef.current.value,
+      ticker: ticker,
     }
     await firebase.database().ref('image/ticker').set(data)
     fetch('/imageees')
@@ -76,7 +76,7 @@ export default function Trends() {
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1>Trends for {tickerRef.current.value}:</h1>
+              <h1>Trends for {ticker}:</h1>
             </div>
             <div className="image">
               <img src={url} alt="test" />
@@ -95,7 +95,7 @@ export default function Trends() {
             </Form>
           </div>) :
           (<div align="center">
-            <h2>Could not fetch data on trends for {tickerRef.current.value}:</h2>
+            <h2>Could not fetch data on trends for {ticker}:</h2>
             <Form>
               <Form.Row className="justify-content-md-center">
                 <Col xs="auto">
@@ -114,7 +114,13 @@ export default function Trends() {
           <form onSubmit={clicked}>
             <Form.Row className="justify-content-md-center">
               <Col sm={1}>
-                <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ticker" ref={tickerRef}></input>
+              <Form.Control
+              autoFocus
+              type="ticker"
+              value={ticker}
+              onChange={(e) => setTicker(e.target.value)}
+              placeholder="ticker"
+            />
               </Col>
               <Col xs="auto">
                 <button type="submit" class="btn btn-primary">Go</button>
