@@ -39,13 +39,14 @@ export default function Trends() {
         firebase.storage().ref('image.png').getDownloadURL().then((url) => {
           setURL(url);
         });
+        firebase.database().ref().once('value').then(snapshot => {setSuccess(snapshot.child('report').val())});
       } else {
       setSuccess(false);
       }
       setButton(true);
       setLoading(false);
     });
-    firebase.database().once('value').then(snapshot => {setSuccess(snapshot.child('report').val())});
+    
   }
 
   function clicked2() {
@@ -71,7 +72,7 @@ export default function Trends() {
         (success ?
           (<div align="center">
             <div className="trendinfo">
-              <h1 style={{ color: 'white' }}>Trends for {ticker}:</h1>
+              <h1>Trends for {ticker}:</h1>
             </div>
             <div className="image">
               <img src={url} alt="test" />
