@@ -1,6 +1,5 @@
 import flask
 from flask import Flask, jsonify, request
-from firebase_admin import db
 import pyrebase
 from pandas_datareader import data
 from pandas_datareader._utils import RemoteDataError
