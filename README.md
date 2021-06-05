@@ -1,4 +1,5 @@
-35LProject
+bcubed
+
 Running the project locally
 
 Overview:
