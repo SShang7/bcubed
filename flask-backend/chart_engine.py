@@ -71,8 +71,6 @@ def get_data(ticker):
             if (stock_data[last_date] > stock_data[date]) and (macd[last_date]>macd[date]):
                 bull.append(date)
             last_date = date
-        print('bull '+ ticker + ': ', bull)
-        print('bear '+ ticker + ': ', bear)
         
         exp3 = macd.ewm(span=9, adjust=False).mean()
         plt.subplot(2, 1, 2)
@@ -91,6 +89,6 @@ def get_data(ticker):
         print('No data found for {t}'.format(t=ticker))
         db.update({"report" : False})
 
-ticker = db.child("image").child("ticker").get().val()['ticker']
-get_data(ticker)
+#ticker = db.child("image").child("ticker").get().val()['ticker']
+#get_data(ticker)
 #get_data(STOCK)

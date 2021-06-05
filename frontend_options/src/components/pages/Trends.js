@@ -12,23 +12,41 @@ export default function Trends() {
   const [success, setSuccess] = useState(true);
   const [loading, setLoading] = useState(true);
   const [url, setURL] = useState('');
-  
+
   const history = useHistory()
   const tickerRef = useRef()
- 
 
+  const storage = firebase.database().ref()
+
+  function Image (image) {
+    storage.child('image.png').getDownloadURL().then((url) => {
+      setURL(url);
+    })
+  }
   function validateForm() {
     return ticker.length > 0;
   }
 
-  async function sendTicker(e) { 
+  async function clicked(e) {
     e.preventDefault()
     var data = {
       ticker: tickerRef.current.value,
+    }
+    await firebase.database().ref('image/ticker').set(data)
+    fetch('/imageees')
+    .then((response) => {
+      if (response.ok) {
+        firebase.storage().ref('image.png').getDownloadURL().then((url) => {
+          setURL(url);
+        });
+      } else {
+      setSuccess(false);
+      }
+      setButton(true);
+      setLoading(false);
+    });
+    firebase.database().once('value').then(snapshot => {setSuccess(snapshot.child('report').val())});
   }
-    await firebase.database().ref('tickers/').set(data)
-    history.push('/tickerimage')
-}
 
   function clicked2() {
     setButton(false);
@@ -72,29 +90,32 @@ export default function Trends() {
             </Form>
           </div>) :
           (<div align="center">
-              <h2>Could not fetch data on trends for {ticker}:</h2>
-              <Form>
-                <Form.Row className="justify-content-md-center">
-                  <Col xs="auto">
-                    <Button block onClick={() => clicked2()}>
-                      Back
+            <h2>Could not fetch data on trends for {ticker}:</h2>
+            <Form>
+              <Form.Row className="justify-content-md-center">
+                <Col xs="auto">
+                  <Button block onClick={() => clicked2()}>
+                    Back
                     </Button>
-                  </Col>
-                </Form.Row>
-              </Form>
-            </div>)
+                </Col>
+              </Form.Row>
+            </Form>
+          </div>)
         )
       ) : (
         <div align="center">
           <h2>This is the trends page!</h2>
           <h3>Select a ticker:</h3>
-          <form onSubmit = {sendTicker}>
-          <div>
-              <label for="exampleInputEmail1">enter the ticker you're interested in</label>
-              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ticker" ref={tickerRef}></input>
-          </div>
-          <button type="submit" class="btn btn-primary">display</button>
-      </form>
+          <form onSubmit={clicked}>
+            <Form.Row className="justify-content-md-center">
+              <Col sm={1}>
+                <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ticker" ref={tickerRef}></input>
+              </Col>
+              <Col xs="auto">
+                <button type="submit" class="btn btn-primary">Go</button>
+              </Col>
+            </Form.Row>
+          </form>
         </div>
       ));
 }
