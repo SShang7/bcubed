@@ -5,16 +5,20 @@ import { useRef } from 'react'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import { useAuth } from '../../contexts/AuthContext'
 
 export default function Trends() {
+  const { currentUser } = useAuth()
   const [ticker, setTicker] = useState("");
   const [button, setButton] = useState(false);
   const [success, setSuccess] = useState(true);
   const [loading, setLoading] = useState(true);
   const [url, setURL] = useState('');
+  const [login, setLogin] = useState(currentUser);
 
   const history = useHistory()
   const tickerRef = useRef()
+
 
   const storage = firebase.database().ref()
 
@@ -83,9 +87,9 @@ export default function Trends() {
                   <Button block onClick={() => clicked2()}>
                     Back
                   </Button>
-                  <Button block onClick={() => clicked3()}>
+                  (login ? <Button block onClick={() => clicked3()}>
                     Add to Watchlist
-                  </Button>
+                  </Button> : <></>)
                 </Col>
               </Form.Row>
             </Form>
