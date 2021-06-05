@@ -91,4 +91,6 @@ def get_data(ticker):
         print('No data found for {t}'.format(t=ticker))
         db.update({"report" : False})
 
+ticker = db.child("image").child("ticker").get().val()['ticker']
+get_data(ticker)
 #get_data(STOCK)
